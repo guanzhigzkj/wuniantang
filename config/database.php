@@ -1,5 +1,6 @@
 <?php
 
+$db_config = get_db_config();
 return [
 
     /*
@@ -13,8 +14,8 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
-
+//    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => $db_config['connection'],
     /*
     |--------------------------------------------------------------------------
     | Database Connections
@@ -43,8 +44,8 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
+            'database' => env('DB_DATABASE', 'song'),
+            'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
@@ -56,11 +57,11 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', $db_config['host']),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', $db_config['database']),
+            'username' => env('DB_USERNAME', $db_config['username']),
+            'password' => env('DB_PASSWORD', $db_config['password']),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
